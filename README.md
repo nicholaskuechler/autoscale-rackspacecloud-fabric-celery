@@ -37,3 +37,10 @@ TO DO:
 	* Snapshot image template name
 	* Paths to Fabric and fabfile.py in auto-scale.py
 	* RabbitMQ vhost name
+
+READ MORE:
+==========
+
+Read my blog post on this project:
+
+http://nicholaskuechler.com/2012/06/19/auto-scale-rackspace-cloud-servers-with-fabric-and-celery/
