@@ -9,8 +9,7 @@ import os
 import sys
 import subprocess
 from time import sleep
-
-WORKER_TMP_FILE = "/tmp/auto-scale.tmp"
+from conf import settings
 
 def get_rabbitmq_queue_size():
     """ Check rabbitmq queue """
@@ -25,7 +24,7 @@ def get_rabbitmq_queue_size():
 
 def start_workers_with_fabric():
     """ testing spinning up workers using fabric """
-    tmp_file = open(WORKER_TMP_FILE, 'w')
+    tmp_file = open(settings.AUTOSCALE_TMP_FILE, 'w')
     tmp_file.write('running')
     tmp_file.close()
     subprocess.call("/usr/local/bin/fab -f /opt/codebase/auto-scale/fabfile.py create_multiple_workers", shell=True)
@@ -33,7 +32,7 @@ def start_workers_with_fabric():
 
 def check_if_workers_running():
     """ Check if we already have workers up and running by seeing if the temporary file exists"""
-    if os.path.isfile(WORKER_TMP_FILE):
+    if os.path.isfile(settings.AUTOSCALE_TMP_FILE):
         return True
     else:
         return False
