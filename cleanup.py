@@ -15,7 +15,7 @@ from time import sleep
 from conf import settings
 
 cloudservers = cloudservers.CloudServers(settings.CLOUDSERVERS_USERNAME, settings.CLOUDSERVERS_API_KEY)
-name = "worker-"
+name = settings.WORKER_PREFIX
 servers = cloudservers.servers.list()
 
 """ Delete the servers from Rackspace Cloud """

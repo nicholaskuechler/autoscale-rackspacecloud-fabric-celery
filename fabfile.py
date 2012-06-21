@@ -161,7 +161,7 @@ def create_multiple_workers():
 @parallel
 def deploy_worker(thread_num):
     cs = cloudservers.CloudServers(settings.CLOUDSERVERS_USERNAME, settings.CLOUDSERVERS_API_KEY)
-    s = _create_server(cs, 'saved-worker-template', 256)
+    s = _create_server(cs, settings.CLOUDSERVERS_IMAGE_TEMPLATE, 256)
 
     _wait_for_server(cs, s, with_url_ping=False)
 

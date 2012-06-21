@@ -6,6 +6,9 @@ CLOUDSERVERS_DATA_CENTER = "dfw"
 # The codebase path that will be rsync'd over to newly created workers
 CODEBASE_PATH = "/opt/codebase"
 
+# Naming prefix for cloud servers workers
+WORKER_PREFIX = "worker-"
+
 # The saved image template backup to use to build new workers
 CLOUDSERVERS_IMAGE_TEMPLATE = "saved-worker-template"
 
