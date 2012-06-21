@@ -154,7 +154,7 @@ def _rsync_codebase_to_worker(cs, s):
 def create_multiple_workers():
     """ deploy new workers in parallel with python threads """
 
-    for i in range(8):
+    for i in range(settings.NUMBER_OF_WORKERS):
         t = Thread(target = deploy_worker, args=(i,))
         t.start()
 
