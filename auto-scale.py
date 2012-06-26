@@ -37,6 +37,11 @@ def check_if_workers_running():
     else:
         return False
 
+def shutdown_and_destroy_workers_with_fabric():
+    """ Use Fabric to shut down celery on workers and then destroy them. """
+    return True
+
+
 def main():
     queue_size = get_rabbitmq_queue_size()
     print "queue size: %d" % (queue_size)
@@ -49,6 +54,9 @@ def main():
         start_workers_with_fabric()
     elif queue_size > 0 and check_if_workers_running():
         print "queue size > 0 and workers already running"
+    elif queue_size = 0 and check_if_workers_running():
+        print "queue size = 0 and workers already running. Spinning down and destroying workers."
+        #shutdown_and_destroy_workers_with_fabric()
     else:
         print "queue size = 0. not doing anything."
 
