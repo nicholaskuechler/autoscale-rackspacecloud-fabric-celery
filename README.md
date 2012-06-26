@@ -10,7 +10,7 @@ http://www.nicholaskuechler.com/
 GETTING STARTED
 ===============
 
-* You must edit auto-scale.py, fabfile.py, tasks.py, cleanup.py, and conf/settings.py to fit your project
+* You must edit auto-scale.py, fabfile.py, tasks.py, and conf/settings.py to fit your project
 * conf/settings.py
 	* Set your Rackspace Cloud API details
 		* CLOUDSERVERS_USERNAME, CLOUDSERVERS_API_KEY
@@ -26,18 +26,17 @@ GETTING STARTED
 	* Set path to your codebase that will rsync to new worker in: _rsync_codebase_to_worker()
 		* Currently: /opt/codebase/ in the call() to rsync
 	* The deploy_worker() does most of the work
-* cleanup.py
-	* Will be merged in to auto-scale.py. Currently destroying workers is a manual process.
+
 
 TO DO:
 ======
 
-* Have auto-scale.py automatically spin down and destroy workers when the RabbitMQ queue size is 0.
 * Use conf/settings.py to define additional settings:
 	* Code base path
 	* Snapshot image template name
 	* Paths to Fabric and fabfile.py in auto-scale.py
 	* RabbitMQ vhost name
+
 
 READ MORE:
 ==========
