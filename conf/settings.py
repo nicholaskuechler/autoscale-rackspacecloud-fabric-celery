@@ -4,7 +4,7 @@ CLOUDSERVERS_API_KEY = "RACKSPACE_CLOUD_API_KEY"
 CLOUDSERVERS_DATA_CENTER = "dfw"
 
 # The codebase path that will be rsync'd over to newly created workers
-CODEBASE_PATH = "/opt/codebase"
+CODEBASE_PATH = "/opt/codebase/"
 
 # Number of orkers to create
 NUMBER_OF_WORKERS = 4

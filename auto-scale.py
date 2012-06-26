@@ -14,7 +14,7 @@ from conf import settings
 
 def get_rabbitmq_queue_size():
     """ Check rabbitmq queue """
-    p1 = subprocess.Popen(["/usr/sbin/rabbitmqctl", "list_queues", "-p", "project_vhost"], stdout=subprocess.PIPE)
+    p1 = subprocess.Popen(["/usr/sbin/rabbitmqctl", "list_queues", "-p", "%s" % settings.RABBITMQ_VHOST], stdout=subprocess.PIPE)
     p2 = subprocess.Popen(["/bin/grep", "celery"], stdin=p1.stdout, stdout=subprocess.PIPE)
     p3 = subprocess.Popen(["/bin/grep", "-vv", "worker"], stdin=p2.stdout, stdout=subprocess.PIPE)
     p4 = subprocess.Popen(["/usr/bin/awk", "{print $2}"], stdin=p3.stdout, stdout=subprocess.PIPE)
