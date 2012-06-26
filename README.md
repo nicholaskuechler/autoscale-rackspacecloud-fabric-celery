@@ -14,6 +14,7 @@ GETTING STARTED
 * conf/settings.py
 	* Set your Rackspace Cloud API details
 		* CLOUDSERVERS_USERNAME, CLOUDSERVERS_API_KEY
+	* Set CLOUDSERVERS_IMAGE_TEMPLATE to the name of your Cloud Servers saved image backup snapshot
 * auto-scale.py
 	* Set your rabbitmq vhost details in: get_rabbitmq_queue_size()
 		* Currently: project_vhost
@@ -24,14 +25,13 @@ GETTING STARTED
 		* Currently: server_name = 'worker-%s' % (get_uuid)
 	* Set path to your codebase that will rsync to new worker in: _rsync_codebase_to_worker()
 		* Currently: /opt/codebase/ in the call() to rsync
-	* Set the saved snapshot image template used to create new workers in: deploy_worker()
-		* Currently: saved-worker-template
 	* The deploy_worker() does most of the work
 
 
 TO DO:
 ======
 
+* Have auto-scale.py automatically spin down and destroy workers when the RabbitMQ queue size is 0.
 * Use conf/settings.py to define additional settings:
 	* Code base path
 	* Snapshot image template name
