@@ -39,22 +39,27 @@ def check_if_workers_running():
         return False
 
 def shutdown_and_destroy_workers():
-    """ Use Fabric to shut down celery on workers and then destroy them. """
+    """ Use Fabric to shut down celery on workers and then destroy them with Rackspace Cloud API """
 
     cloudservers = cloudservers.CloudServers(settings.CLOUDSERVERS_USERNAME, settings.CLOUDSERVERS_API_KEY)
     name = settings.WORKER_PREFIX
     servers = cloudservers.servers.list()
 
-    """ Delete the servers from Rackspace Cloud """
 
-    i = 0
+    """ Use Fabric to shut down celery daemon on the workers """
     for s in servers:
         if name in s.name:
             print "Shutting down celery workers on %s - %s" % (s.name, s.private_ip)
-            """ Call Fabric to shut down celery on the workers """
             subprocess.call("/usr/local/bin/fab -f /opt/codebase/auto-scale/fabfile.py -H " + s.private_ip + " stop_celery_worker", shell=$
-            sleep(60)                                          
-            #print "Server: %-20s ==> Host: %-40s" % (s.name, s.hostId)
+
+
+    # Sleep for 600 seconds, allowing time for all celery worker nodes to finish processing their tasks and shut down
+    sleep(600)
+
+    """ Delete the servers from Rackspace Cloud """
+    i = 0
+    for s in servers:
+        if name in s.name:
             print "DELETING server: %-20s" % (s.name)
             s.delete()
             i += 1
