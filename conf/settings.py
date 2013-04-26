@@ -6,7 +6,7 @@ CLOUDSERVERS_DATA_CENTER = "dfw"
 # The codebase path that will be rsync'd over to newly created workers
 CODEBASE_PATH = "/opt/codebase/"
 
-# Number of orkers to create
+# Number of workers to create
 NUMBER_OF_WORKERS = 4
 
 # Naming prefix for cloud servers workers
